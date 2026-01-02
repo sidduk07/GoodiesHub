@@ -19,6 +19,7 @@ const formSchema = z.object({
   description: z.string().min(10, { message: "Description must be at least 10 characters." }),
   category: z.string({ required_error: "Please select a category." }),
   link: z.string().url({ message: "Please enter a valid URL." }),
+  blogUrl: z.string().optional().refine((val) => !val || val.startsWith('http'), { message: "Please enter a valid URL." }),
   videoUrl: z.string().optional().refine((val) => !val || val.includes('youtube.com') || val.includes('youtu.be'), { message: "Please enter a valid YouTube URL." }),
 });
 
@@ -31,6 +32,7 @@ export default function Submit() {
       company: "",
       description: "",
       link: "",
+      blogUrl: "",
       videoUrl: "",
     },
   });
@@ -140,6 +142,23 @@ export default function Submit() {
                         </FormControl>
                         <FormDescription>
                           Link to the official landing page or application.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="blogUrl"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Official Announcement / Blog Post (Optional)</FormLabel>
+                        <FormControl>
+                          <Input placeholder="https://blog.company.com/..." {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          Link to the official announcement or blog post about this swag.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>

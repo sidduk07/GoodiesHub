@@ -23,6 +23,7 @@ export interface SwagItem {
   isFeatured?: boolean;
   status: 'active' | 'expired' | 'upcoming';
   videoUrl?: string;
+  blogUrl?: string;
 }
 
 export const CATEGORIES: SwagCategory[] = ['Hackathon', 'Internship', 'Open Source', 'Conference', 'Program'];
