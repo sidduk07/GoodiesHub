@@ -17,6 +17,7 @@ export interface SwagItem {
   link: string;
   isFeatured?: boolean;
   status: 'active' | 'expired' | 'upcoming';
+  videoUrl?: string;
 }
 
 export const CATEGORIES: SwagCategory[] = ['Hackathon', 'Internship', 'Open Source', 'Conference', 'Program'];

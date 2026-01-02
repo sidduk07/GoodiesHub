@@ -19,6 +19,7 @@ const formSchema = z.object({
   description: z.string().min(10, { message: "Description must be at least 10 characters." }),
   category: z.string({ required_error: "Please select a category." }),
   link: z.string().url({ message: "Please enter a valid URL." }),
+  videoUrl: z.string().optional().refine((val) => !val || val.includes('youtube.com') || val.includes('youtu.be'), { message: "Please enter a valid YouTube URL." }),
 });
 
 export default function Submit() {
@@ -30,6 +31,7 @@ export default function Submit() {
       company: "",
       description: "",
       link: "",
+      videoUrl: "",
     },
   });
 
@@ -138,6 +140,23 @@ export default function Submit() {
                         </FormControl>
                         <FormDescription>
                           Link to the official landing page or application.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="videoUrl"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>YouTube Video URL (Optional)</FormLabel>
+                        <FormControl>
+                          <Input placeholder="https://youtube.com/watch?v=..." {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          Add a video walkthrough or review if available.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>

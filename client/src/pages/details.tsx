@@ -91,6 +91,31 @@ export default function Details() {
                             </ul>
                         </div>
                     </section>
+
+                    <section>
+                      <h3 className="font-display text-xl font-bold mb-4">Video Review</h3>
+                      <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm aspect-video flex items-center justify-center bg-slate-100 dark:bg-slate-800">
+                        {item.videoUrl ? (
+                          <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src={item.videoUrl.replace('watch?v=', 'embed/').replace('youtu.be/', 'youtube.com/embed/')} 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowFullScreen
+                            className="border-0"
+                          ></iframe>
+                        ) : (
+                          <div className="text-center p-6">
+                            <div className="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center mx-auto mb-3">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-muted-foreground"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+                            </div>
+                            <p className="text-muted-foreground font-medium">Video coming soon</p>
+                            <p className="text-xs text-muted-foreground/70 mt-1">Review is currently being filmed</p>
+                          </div>
+                        )}
+                      </div>
+                    </section>
                     
                     <section>
                         <h3 className="font-display text-xl font-bold mb-4">About the Company</h3>

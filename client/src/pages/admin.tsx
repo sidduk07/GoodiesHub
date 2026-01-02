@@ -56,6 +56,11 @@ export default function Admin() {
                           <Badge variant="outline" className="text-yellow-600 bg-yellow-50 border-yellow-200">Pending</Badge>
                         </div>
                         <p className="text-sm text-muted-foreground">Submitted by user@example.com • 2 hours ago</p>
+                        {i === 2 && (
+                          <p className="text-xs text-blue-600 mt-1 flex items-center">
+                            <span className="mr-1">🎥</span> Includes YouTube video
+                          </p>
+                        )}
                       </div>
                       <div className="flex gap-2">
                          <Button size="icon" variant="ghost" className="h-8 w-8 text-green-600 hover:text-green-700 hover:bg-green-50" onClick={() => handleApprove(String(i))}>
