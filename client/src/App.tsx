@@ -3,11 +3,16 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AuthProvider } from "@/hooks/use-auth";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Details from "@/pages/details";
 import Submit from "@/pages/submit";
 import Admin from "@/pages/admin";
+import AdminEdit from "@/pages/admin-edit";
+import Login from "@/pages/login";
+import Register from "@/pages/register";
+import Settings from "@/pages/settings";
 
 function Router() {
   return (
@@ -16,7 +21,10 @@ function Router() {
       <Route path="/swag/:id" component={Details} />
       <Route path="/submit" component={Submit} />
       <Route path="/admin" component={Admin} />
-      <Route path="/login" component={() => <div className="p-10 text-center">Login Mock (Go to <a href="/admin" className="text-primary underline">/admin</a>)</div>} />
+      <Route path="/admin/edit/:id" component={AdminEdit} />
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
+      <Route path="/settings" component={Settings} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -25,10 +33,12 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
