@@ -1,21 +1,15 @@
-{
-  "name": "swag-compass",
-  "env": "node",
-  "buildCommand": "npm run build",
-  "startCommand": "npm start",
-  "healthCheckPath": "/api/health",
-  "envVars": [
-    {
-      "key": "DATABASE_URL",
-      "sync": false
-    },
-    {
-      "key": "SESSION_SECRET",
-      "generateValue": true
-    },
-    {
-      "key": "NODE_ENV",
-      "value": "production"
-    }
-  ]
-}
+services:
+  - type: web
+    name: goodieshub
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: NODE_ENV
+        value: production
